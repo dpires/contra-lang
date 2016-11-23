@@ -28,11 +28,13 @@ Node *
 AssignmentNode_eval(Node *node)
 {
     AssignmentNode *an = node->assignmentNode;
+    Node *value = an->value;
+
     if (an->value->nodeType == FUNCTION_NODE) {
-        HashMap_put(an->parser->symbols, an->varName, an->value);
+        HashMap_put(an->parser->symbols, an->varName, value);
     } else {
-        Node *eval = Eval(an->value);
-        HashMap_put(an->parser->symbols, an->varName, eval);
+        value = Eval(an->value);
+        HashMap_put(an->parser->symbols, an->varName, value);
     }
-    return node;
+    return value;
 }

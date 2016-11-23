@@ -9,9 +9,10 @@ program_OBJS := $(program_C_OBJS)
 all: $(program_NAME)
 
 $(program_NAME): $(program_OBJS)
-	$(LINK.c) $(program_OBJS) -o $(program_NAME)
+	$(LINK.c) -g $(program_OBJS) -o $(program_NAME)
 
 clean:
 	$(RM) $(program_NAME)
+	$(RM) $(program_OBJS)
 
 

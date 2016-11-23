@@ -797,6 +797,15 @@ Eval(Node *node)
 Node *
 ExecuteFunction(Parser *parser, FunctionNode *functionNode, Vector *boundParameters)
 {
+    // create a copy of the symbol table
+    HashMap *copies = HashMap_create();
+    HashMapIterator *hmip = HashMap_getIterator(parser->symbols);
+    HashMapNode *n;
+    while ((n = HashMapIterator_getNext(hmip)) != NULL) {
+        HashMap_put(copies, n->key, n->value);
+    }
+    HashMapIterator_destroy(hmip);
+
     VIterator *it = Vector_getIterator(boundParameters);
     BoundParameter *bp;
     while ((bp = VIterator_getNext(it)) != NULL) {
@@ -809,9 +818,13 @@ ExecuteFunction(Parser *parser, FunctionNode *functionNode, Vector *boundParamet
     Node *node = Node_create(FUNCTION_NODE);
     node->functionNode = functionNode;
 
-//    parser->symbols = savedSymbols;
+    // eval function with local symbol table
+    Node *evalFunction = Eval(node);
 
-    return Eval(node);
+    // reset the symbol table
+    parser->symbols = copies;
+
+    return evalFunction;
 }
 
 Node *

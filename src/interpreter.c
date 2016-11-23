@@ -40,7 +40,12 @@ Interpret(Parser *parser)
 int
 main(int argc, char *argv[])
 {
-    char *source = ReadFile("script.con");
+    if (argc != 2) {
+        printf("./contra <script.con>\n");
+        exit(1);
+    }
+
+    char *source = ReadFile(argv[1]);
 
     Tokenizer *tokenizer = Tokenizer_create(source);
     Vector *tokens = Tokenizer_tokenize(tokenizer, source);

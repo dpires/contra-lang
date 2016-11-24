@@ -20,6 +20,12 @@ VariableNode_create(char *varName, Parser *parser)
     return variant;
 }
 
+void
+VariableNode_destroy(VariableNode *variableNode)
+{
+    free(variableNode);
+}
+
 Node *
 VariableNode_eval(Node *node)
 {

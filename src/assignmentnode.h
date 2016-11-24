@@ -14,6 +14,9 @@ typedef struct AssignmentNode {
 Node *
 AssignmentNode_create(char *varName, Node *value, Parser *parser);
 
+void
+AssignmentNode_destroy(AssignmentNode *assignmentNode);
+
 Node *
 AssignmentNode_eval(Node *node);
 

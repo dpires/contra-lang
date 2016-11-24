@@ -864,6 +864,18 @@ Release(Node *node)
         case IF_NODE:
             IfNode_destroy(node->ifNode);
             break;
+
+        case WHILE_NODE:
+            WhileNode_destroy(node->whileNode);
+            break;
+
+        case ASSIGNMENT_NODE:
+            AssignmentNode_destroy(node->assignmentNode);
+            break;
+
+        case VARIABLE_NODE:
+            VariableNode_destroy(node->variableNode);
+            break;
     }
 
     free(node);

@@ -24,6 +24,14 @@ AssignmentNode_create(char *varName, Node *value, Parser *parser)
     return variant;
 }
 
+void
+AssignmentNode_destroy(AssignmentNode *assignmentNode)
+{
+    HashMap_remove(assignmentNode->parser->symbols, assignmentNode->varName);
+    Release(assignmentNode->value);
+    free(assignmentNode);
+}
+
 Node *
 AssignmentNode_eval(Node *node)
 {

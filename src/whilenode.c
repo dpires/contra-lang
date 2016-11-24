@@ -6,7 +6,6 @@
 #include "numbernode.h"
 
 
-
 Node *
 WhileNode_create(Node *condition, Node *body)
 {
@@ -20,6 +19,14 @@ WhileNode_create(Node *condition, Node *body)
     return variant;
 }
 
+void
+WhileNode_destroy(WhileNode *whileNode)
+{
+    Release(whileNode->condition);
+    Release(whileNode->body);
+    free(whileNode);
+}
+
 
 Node *
 WhileNode_eval(Node *whileNode)
@@ -29,9 +36,10 @@ WhileNode_eval(Node *whileNode)
     Node *res = Eval(whileNode->whileNode->condition);
     int result = res->numberNode->value;
     while (result) {
-        ret = Eval(whileNode->whileNode->body);
         res = Eval(whileNode->whileNode->condition);
         result = res->numberNode->value;
+        ret =  Eval(whileNode->whileNode->body);
+        
     }
 
     return ret;

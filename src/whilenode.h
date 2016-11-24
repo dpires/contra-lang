@@ -11,6 +11,9 @@ typedef struct WhileNode {
 Node *
 WhileNode_create(Node *condition, Node *body);
 
+void
+WhileNode_destroy(WhileNode *whileNode);
+
 Node *
 WhileNode_eval(Node *whileNode);
 

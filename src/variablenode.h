@@ -13,6 +13,9 @@ typedef struct VariableNode {
 Node *
 VariableNode_create(char *varName, Parser *parser);
 
+void
+VariableNode_destroy(VariableNode *variableNode);
+
 Node *
 VariableNode_eval(Node *node);
 

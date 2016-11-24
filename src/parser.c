@@ -860,6 +860,10 @@ Release(Node *node)
         case BINOP_NODE:
             BinOpNode_destroy(node->binOpNode);
             break;
+
+        case IF_NODE:
+            IfNode_destroy(node->ifNode);
+            break;
     }
 
     free(node);

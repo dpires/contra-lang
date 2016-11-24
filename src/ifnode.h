@@ -12,6 +12,9 @@ typedef struct IfNode {
 Node *
 IfNode_create(Node *condition, Node *thenBlock, Node *elseBlock);
 
+void
+IfNode_destroy(IfNode *ifNode);
+
 Node *
 IfNode_eval(Node *ifNode);
 

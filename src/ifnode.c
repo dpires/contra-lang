@@ -21,26 +21,41 @@ IfNode_create(Node *condition, Node *thenBlock, Node *elseBlock)
     return variant;
 }
 
+void
+IfNode_destroy(IfNode *ifNode)
+{
+    Release(ifNode->condition);
+    Release(ifNode->thenBlock);
+
+    if (ifNode->elseBlock != NULL) {
+        Release(ifNode->elseBlock);
+    }
+
+    free(ifNode);
+}
+
 Node *
 IfNode_eval(Node *ifNode)
 {
     Node *ret = NULL;
+    Node *condition;
+    int result;
 
     if (ifNode->ifNode->condition != NULL &&
         ifNode->ifNode->thenBlock != NULL) {
-        Node *condition = Eval(ifNode->ifNode->condition);
-        int result = condition->numberNode->value; 
+        condition = Eval(ifNode->ifNode->condition);
+        result = condition->numberNode->value; 
         if (result) {
-            ret = Eval(ifNode->ifNode->thenBlock);
+            return Eval(ifNode->ifNode->thenBlock);
         }
     }
 
     if (ifNode->ifNode->condition != NULL &&
         ifNode->ifNode->elseBlock != NULL) {
-        Node *condition = Eval(ifNode->ifNode->condition);
-        int result = condition->numberNode->value; 
+        condition = Eval(ifNode->ifNode->condition);
+        result = condition->numberNode->value; 
         if (!result) {
-            ret = Eval(ifNode->ifNode->elseBlock);
+            return Eval(ifNode->ifNode->elseBlock);
         }
     }
 

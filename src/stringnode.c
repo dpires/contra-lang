@@ -17,6 +17,12 @@ StringNode_create(char *text)
     return variant;
 }
 
+void
+StringNode_destroy(StringNode *stringNode)
+{
+    free(stringNode);
+}
+
 Node *
 StringNode_eval(Node *node)
 {

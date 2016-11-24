@@ -852,6 +852,14 @@ Release(Node *node)
         case PRINT_NODE:
             PrintNode_destroy(node->printNode);
             break;
+
+        case STRING_NODE:
+            StringNode_destroy(node->stringNode);
+            break;
+
+        case BINOP_NODE:
+            BinOpNode_destroy(node->binOpNode);
+            break;
     }
 
     free(node);

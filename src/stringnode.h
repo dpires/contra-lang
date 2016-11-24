@@ -10,6 +10,9 @@ typedef struct StringNode {
 Node *
 StringNode_create(char *text);
 
+void
+StringNode_destroy(StringNode *stringNode);
+
 Node *
 StringNode_eval(Node *node);
 

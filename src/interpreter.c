@@ -38,6 +38,7 @@ Interpret(Parser *parser)
     Eval(statements);
     Release(statements);
 }
+
 int
 main(int argc, char *argv[])
 {
@@ -49,11 +50,15 @@ main(int argc, char *argv[])
     char *source = ReadFile(argv[1]);
 
     Tokenizer *tokenizer = Tokenizer_create(source);
+
     Vector *tokens = Tokenizer_tokenize(tokenizer, source);
+
     Parser *parser = Parser_create(tokens);
     Interpret(parser);
+
     Tokenizer_destroy(tokenizer);
     Parser_destroy(parser);
     free(source);
+
     return 0;    
 }

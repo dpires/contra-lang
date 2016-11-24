@@ -25,7 +25,9 @@ void
 IfNode_destroy(IfNode *ifNode)
 {
     Release(ifNode->condition);
-    Release(ifNode->thenBlock);
+    if (ifNode->thenBlock != NULL) {
+        Release(ifNode->thenBlock);
+    }
 
     if (ifNode->elseBlock != NULL) {
         Release(ifNode->elseBlock);

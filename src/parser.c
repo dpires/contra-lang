@@ -876,6 +876,18 @@ Release(Node *node)
         case VARIABLE_NODE:
             VariableNode_destroy(node->variableNode);
             break;
+
+        case ARRAY_NODE:
+            ArrayNode_destroy(node->arrayNode);
+            break;
+
+        case ARRAYUPDATE_NODE:
+            ArrayUpdateNode_destroy(node->arrayUpdateNode);
+            break;
+    
+        case LOOKUP_NODE:
+            LookupNode_destroy(node->lookupNode);
+            break;
     }
 
     free(node);

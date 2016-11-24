@@ -11,6 +11,9 @@ typedef struct ArrayNode {
 Node *
 ArrayNode_create(Vector *elements);
 
+void
+ArrayNode_destroy(ArrayNode *arrayNode);
+
 Node *
 ArrayNode_eval(Node *arrayNode);
 

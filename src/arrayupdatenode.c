@@ -21,6 +21,12 @@ ArrayUpdateNode_create(Node *arrayNode, Node *indexExpression, Node *rightSideEx
     return variant;
 }
 
+void
+ArrayUpdateNode_destroy(ArrayUpdateNode *arrayUpdateNode)
+{
+    free(arrayUpdateNode);
+}
+
 Node *
 ArrayUpdateNode_eval(Node *arrayUpdateNode)
 {

@@ -20,6 +20,14 @@ LookupNode_create(Node *varNode, Node *keyNode)
     return variant;
 }
 
+void
+LookupNode_destroy(LookupNode *lookupNode)
+{
+    Release(lookupNode->varNode);
+    Release(lookupNode->keyNode);
+    free(lookupNode);
+}
+
 Node *
 LookupNode_eval(Node *lookupNode)
 {

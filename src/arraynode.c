@@ -16,15 +16,21 @@ ArrayNode_create(Vector *elements)
     return variant;
 }
 
+void
+ArrayNode_destroy(ArrayNode *arrayNode)
+{
+    VIterator *it = Vector_getIterator(arrayNode->elements);
+    Node *node;
+    while ((node = VIterator_getNext(it)) != NULL) {
+        Release(node);
+    }
+    VIterator_destroy(it);
+    Vector_destroy(arrayNode->elements);
+    free(arrayNode);
+}
+
 Node *
 ArrayNode_eval(Node *arrayNode)
 {
-    Vector *items = Vector_create(arrayNode->arrayNode->elements->size);
-    VIterator *it = Vector_getIterator(arrayNode->arrayNode->elements);
-    Node *node;
-    while ((node = VIterator_getNext(it)) != NULL) {
-        Vector_add(items, Eval(node));
-    }
-    VIterator_destroy(it);
-    return ArrayNode_create(items);
+    return arrayNode;
 }

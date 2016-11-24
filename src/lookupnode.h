@@ -12,6 +12,9 @@ typedef struct LookupNode {
 Node *
 LookupNode_create(Node *varNode, Node *keyNode);
 
+void
+LookupNode_destroy(LookupNode *lookupNode);
+
 Node *
 LookupNode_eval(Node *lookupNode);
 

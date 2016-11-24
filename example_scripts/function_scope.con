@@ -3,7 +3,7 @@ script
     println count
     def message(msg)
         println msg
-	count = 2
+        count = 2
         println count
     end
     result = message("Hello World.")

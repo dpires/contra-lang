@@ -42,12 +42,6 @@ void
 Parser_destroy(Parser *parser)
 {
     HashMap_destroy(parser->symbols);
-    VIterator *it = Vector_getIterator(parser->tokens);
-    Token *token;
-    while ((token = VIterator_getNext(it)) != NULL) {
-        Token_destroy(token);
-    }
-    VIterator_destroy(it);
     free(parser);
 }
     

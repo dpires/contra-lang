@@ -22,6 +22,12 @@ Tokenizer_create(char *source)
 void
 Tokenizer_destroy(Tokenizer *tokenizer)
 {
+    VIterator *it = Vector_getIterator(tokenizer->tokens);
+    Token *token;
+    while ((token = VIterator_getNext(it)) != NULL) {
+        Token_destroy(token);
+    }
+    VIterator_destroy(it);
     Vector_destroy(tokenizer->tokens);
     free(tokenizer);
 }

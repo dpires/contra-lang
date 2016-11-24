@@ -16,6 +16,9 @@ typedef struct PrintNode {
 Node *
 PrintNode_create(Node *expression, int type);
 
+void
+PrintNode_destroy(PrintNode *printNode);
+
 Node *
 PrintNode_eval(Node *node);
 

@@ -176,4 +176,8 @@ ExecuteFunction(Parser *parser, FunctionNode *functionNode, Vector *boundParamet
 Node *
 Block(Parser *parser);
 
+void
+Release(Node *node);
+
+
 #endif

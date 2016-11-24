@@ -19,6 +19,19 @@ BlockNode_create(Vector *statements)
     return variant;
 }
 
+void
+BlockNode_destroy(BlockNode *blockNode)
+{
+    VIterator *it = Vector_getIterator(blockNode->statements);
+    Node *node;
+    while ((node = VIterator_getNext(it)) != NULL) {
+        Release(node);
+    }
+    VIterator_destroy(it);
+    Vector_destroy(blockNode->statements);
+    free(blockNode);
+}
+
 Node *
 BlockNode_get(BlockNode *blockNode, int index)
 {
@@ -40,5 +53,6 @@ BlockNode_eval(Node *blockNode)
     while ((node = VIterator_getNext(it)) != NULL) {
         ret = Eval(node);
     }
+    VIterator_destroy(it);
     return ret;
 }

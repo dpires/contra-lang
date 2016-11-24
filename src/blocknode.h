@@ -11,6 +11,9 @@ typedef struct BlockNode {
 Node *
 BlockNode_create(Vector *statements);
 
+void
+BlockNode_destroy(BlockNode *blockNode);
+
 Node *
 BlockNode_get(BlockNode *blockNode, int index);
 

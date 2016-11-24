@@ -11,6 +11,9 @@ typedef struct NumberNode {
 Node *
 NumberNode_create(int value);
 
+void
+NumberNode_destroy(NumberNode *numberNode);
+
 Node *
 NumberNode_eval(Node *numberNode);
 

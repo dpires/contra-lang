@@ -836,3 +836,23 @@ Block(Parser *parser)
     MatchAndEat(parser, END_TOKEN);
     return BlockNode_create(nodes);
 }
+
+void
+Release(Node *node)
+{
+    switch (node->nodeType) {
+        case BLOCK_NODE:
+            BlockNode_destroy(node->blockNode);
+            break;
+
+        case NUMBER_NODE:
+            NumberNode_destroy(node->numberNode);
+            break;
+
+        case PRINT_NODE:
+            PrintNode_destroy(node->printNode);
+            break;
+    }
+
+    free(node);
+}

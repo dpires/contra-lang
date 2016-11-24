@@ -9,6 +9,8 @@
 #include "variablenode.h"
 #include "stringnode.h"
 
+#include "parser.h"
+
 Node *
 PrintNode_create(Node *expression, int type)
 {
@@ -20,6 +22,13 @@ PrintNode_create(Node *expression, int type)
     variant->printNode = printNode;
 
     return variant;
+}
+
+void
+PrintNode_destroy(PrintNode *printNode)
+{
+    Release(printNode->expression);
+    free(printNode);
 }
 
 Node *

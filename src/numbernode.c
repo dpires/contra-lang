@@ -16,9 +16,14 @@ NumberNode_create(int value)
     return variant;
 }
 
+void
+NumberNode_destroy(NumberNode *numberNode)
+{
+    free(numberNode);
+}
+
 Node *
 NumberNode_eval(Node *numberNode)
 {
     return numberNode;
-//    return numberNode->numberNode->value;
 }

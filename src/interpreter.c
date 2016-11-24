@@ -36,6 +36,7 @@ Interpret(Parser *parser)
     MatchAndEat(parser, SCRIPT_TOKEN);
     Node *statements = Block(parser);
     Eval(statements);
+    Release(statements);
 }
 int
 main(int argc, char *argv[])

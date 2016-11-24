@@ -1,0 +1,7 @@
+script
+    count = 1
+    while (count < 10)
+        print "count = " println count
+        count = count + 1
+    end
+end

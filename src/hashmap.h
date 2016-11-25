@@ -31,6 +31,9 @@ HashMap_entries(HashMap *hashmap);
 void
 HashMap_put(HashMap *hashmap, char *key, void *value);
 
+void
+HashMap_remove(HashMap *hashmap, char *key);
+
 void *
 HashMap_get(HashMap *hashmap, char *key);
 

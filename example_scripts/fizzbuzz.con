@@ -2,16 +2,16 @@ script
     count = 1
     while count < 100
         if (count % 15) == 0
-            println "FizzBuzz"
+            println("FizzBuzz")
         end
         else if (count % 3) == 0
-            println "Fizz"
+            println("Fizz")
         end
         else if (count % 5) == 0
-            println "Buzz"
+            println("Buzz")
         end
         else
-            println count
+            println(count)
         end
         count = count + 1
     end

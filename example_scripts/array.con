@@ -2,7 +2,7 @@ script
     count = 0
     list = ["one", "two", "three"]
     while count < 2
-        println list[count]
+        println(list[count])
         count = count + 1
     end
 end

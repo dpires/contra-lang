@@ -1,12 +1,12 @@
 script
     count = 1
-    println count
+    println(count)
     def message(msg)
-        println msg
+        println(msg)
         count = 2
-        println count
+        println(count)
     end
     result = message("Hello World.")
-    println count
-    println result
+    println(count)
+    println(result)
 end

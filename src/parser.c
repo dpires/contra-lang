@@ -28,6 +28,7 @@
 #include "functioncallnode.h"
 #include "printlinecommand.h"
 #include "printcommand.h"
+#include "waitcommand.h"
 
 
 Parser *
@@ -785,6 +786,9 @@ Eval(Node *node)
             break;
         case PRINTLINE_COMMAND:
             return PrintLineCommand_eval(node);
+            break;
+        case WAIT_COMMAND:
+            return WaitCommand_eval(node);
             break;
     }
     return node;

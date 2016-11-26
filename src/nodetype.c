@@ -23,7 +23,8 @@ NodeTypeString(Node *node)
         "FUNCTION_NODE",
         "FUNCTIONCALL_NODE",
         "PRINTLINE_COMMAND",
-        "PRINT_COMMAND"
+        "PRINT_COMMAND",
+        "WAIT_COMMAND"
     };
 
     return strings[node->nodeType];

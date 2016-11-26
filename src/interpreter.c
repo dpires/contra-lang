@@ -15,6 +15,7 @@
 #include "printcommand.h"
 #include "printlinecommand.h"
 #include "assignmentnode.h"
+#include "waitcommand.h"
 
 Node *
 CreatePrintLineCommand(Parser *parser)
@@ -56,6 +57,26 @@ CreatePrintCommand(Parser *parser)
     return functionVariable;
 }
 
+Node *
+CreateWaitCommand(Parser *parser)
+{
+    char *functionName = "wait";
+
+    Vector *parameters = Vector_create(1);
+    Vector_add(parameters, Parameter_createName("interval"));
+
+    Vector *statements = Vector_create(1);
+    Vector_add(statements, WaitCommand_create(parser));
+
+    Node *functionBody = BlockNode_create(statements);
+
+    Node *functionNode = FunctionNode_create(functionName, functionBody, parameters);
+
+    Node *functionVariable = AssignmentNode_create(functionName, functionNode, parser);
+
+    return functionVariable;
+}
+
 char *
 ReadFile(char *path)
 {
@@ -81,6 +102,7 @@ Interpret(Parser *parser)
     MatchAndEat(parser, SCRIPT_TOKEN);
     Eval(CreatePrintCommand(parser));
     Eval(CreatePrintLineCommand(parser));
+    Eval(CreateWaitCommand(parser));
     Node *statements = Block(parser);
     Eval(statements);
     Release(statements);

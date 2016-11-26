@@ -22,6 +22,7 @@ typedef struct Node {
         struct FunctionCallNode *functionCallNode;
         struct PrintCommand *printCommand;
         struct PrintLineCommand *printLineCommand;
+        struct WaitCommand *waitCommand;
     };
 } Node;
 

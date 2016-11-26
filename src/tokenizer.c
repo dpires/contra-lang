@@ -155,11 +155,7 @@ int
 FindStatementType(char *text)
 {
     int type = UNKNOWN_TOKEN;
-    if (strcmp(text, "print") == 0) {
-        type = PRINT_TOKEN; 
-    } else if (strcmp(text, "println") == 0) {
-        type = PRINTLN_TOKEN;
-    } else if (strcmp(text, "wait") == 0) {
+    if (strcmp(text, "wait") == 0) {
         type = WAIT_TOKEN;
     } else if (strcmp(text, "script") == 0) {
         type = SCRIPT_TOKEN;

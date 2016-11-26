@@ -26,6 +26,8 @@
 #include "parameter.h"
 #include "boundparameter.h"
 #include "functioncallnode.h"
+#include "printlinecommand.h"
+#include "printcommand.h"
 
 
 Parser *
@@ -677,12 +679,6 @@ Statement(Parser *parser)
         node = Assignment(parser);
     } else if (IsArrayAccess(parser)) {
         node = ArrayUpdate(parser);
-    } else if (currentToken->type == PRINT_TOKEN) {
-        MatchAndEat(parser, PRINT_TOKEN);
-        node = PrintNode_create(Expression(parser), SAMELINE);
-    } else if (currentToken->type == PRINTLN_TOKEN) {
-        MatchAndEat(parser, PRINTLN_TOKEN);
-        node = PrintNode_create(Expression(parser), NEWLINE);
     } else if (IsWhile(parser)) {
         node = While(parser);
     } else if (IsIfElse(parser)) {
@@ -783,6 +779,12 @@ Eval(Node *node)
             break;
         case FUNCTIONCALL_NODE:
             return FunctionCallNode_eval(node);
+            break;
+        case PRINT_COMMAND:
+            return PrintCommand_eval(node);
+            break;
+        case PRINTLINE_COMMAND:
+            return PrintLineCommand_eval(node);
             break;
     }
     return node;

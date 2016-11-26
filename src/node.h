@@ -20,6 +20,8 @@ typedef struct Node {
         struct ArrayUpdateNode *arrayUpdateNode;
         struct FunctionNode *functionNode;
         struct FunctionCallNode *functionCallNode;
+        struct PrintCommand *printCommand;
+        struct PrintLineCommand *printLineCommand;
     };
 } Node;
 

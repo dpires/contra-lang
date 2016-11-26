@@ -21,7 +21,9 @@ NodeTypeString(Node *node)
         "LOOKUP_NODE",
         "ARRAYUPDATE_NODE",
         "FUNCTION_NODE",
-        "FUNCTIONCALL_NODE"
+        "FUNCTIONCALL_NODE",
+        "PRINTLINE_COMMAND",
+        "PRINT_COMMAND"
     };
 
     return strings[node->nodeType];

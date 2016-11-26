@@ -10,6 +10,51 @@
 #include "token.h"
 #include "parser.h"
 #include "blocknode.h"
+#include "functionnode.h"
+#include "parameter.h"
+#include "printcommand.h"
+#include "printlinecommand.h"
+#include "assignmentnode.h"
+
+Node *
+CreatePrintLineCommand(Parser *parser)
+{
+    char *functionName = "println";
+
+    Vector *parameters = Vector_create(1);
+    Vector_add(parameters, Parameter_createName("writee"));
+
+    Vector *statements = Vector_create(1);
+    Vector_add(statements, PrintLineCommand_create(parser));
+
+    Node *functionBody = BlockNode_create(statements);
+
+    Node *functionNode = FunctionNode_create(functionName, functionBody, parameters);
+
+    Node *functionVariable = AssignmentNode_create(functionName, functionNode, parser);
+
+    return functionVariable;
+}
+
+Node *
+CreatePrintCommand(Parser *parser)
+{
+    char *functionName = "print";
+
+    Vector *parameters = Vector_create(1);
+    Vector_add(parameters, Parameter_createName("writee"));
+
+    Vector *statements = Vector_create(1);
+    Vector_add(statements, PrintCommand_create(parser));
+
+    Node *functionBody = BlockNode_create(statements);
+
+    Node *functionNode = FunctionNode_create(functionName, functionBody, parameters);
+
+    Node *functionVariable = AssignmentNode_create(functionName, functionNode, parser);
+
+    return functionVariable;
+}
 
 char *
 ReadFile(char *path)
@@ -34,6 +79,8 @@ void
 Interpret(Parser *parser)
 {
     MatchAndEat(parser, SCRIPT_TOKEN);
+    Eval(CreatePrintCommand(parser));
+    Eval(CreatePrintLineCommand(parser));
     Node *statements = Block(parser);
     Eval(statements);
     Release(statements);

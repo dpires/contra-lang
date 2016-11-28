@@ -1,4 +1,8 @@
+/*
+ * fizzbuzz.con
+ */
 script
+    // initialize count
     count = 1
     while count < 100
         if (count % 15) == 0
@@ -13,6 +17,6 @@ script
         else
             println(count)
         end
-        count = count + 1
+        count = count + 1 /* increment counter */
     end
 end

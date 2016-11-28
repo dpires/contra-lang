@@ -202,7 +202,29 @@ Tokenizer_tokenize(Tokenizer *tokenizer, char *source)
 
         switch (state) {
             case DEFAULT_STATE:
-                if (IsOp(chr)) {
+                if (chr == '/') {
+                    if (source[index+1] == '/') {
+                        while (chr != '\r' && chr != '\n') {
+                            index++;
+                            chr = source[index];
+                        }
+                    } else if (source[index+1] == '*') {
+                        while (1) {
+                                index++;
+                                if (source[index+1]=='*' && source[index+2]=='/') {
+                                    break;
+                                }
+                        }
+                        index+=2;
+                    } else {
+                        int type = DIVIDE_TOKEN;
+                        text[0] = '/';
+                        text[1] = '\0';
+                        token = Token_create(strdup(text), type);
+                        Tokenizer_addToken(tokenizer, token);
+                    }
+
+                } else if (IsOp(chr)) {
                     firstOperator = chr;
                     text[0] = firstOperator;
                     text[1] = '\0';
@@ -210,7 +232,6 @@ Tokenizer_tokenize(Tokenizer *tokenizer, char *source)
                     token = Token_create(strdup(text), type);
                     state = OPERATOR_STATE;
                 } else if (isdigit(chr)) {
-                    
                     text[0] = chr;
                     textIndex++;
                     state = NUMBER_STATE; 
